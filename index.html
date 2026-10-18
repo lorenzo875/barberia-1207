@@ -1,0 +1,1080 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Decano Barbería 1207</title>
+<meta name="description" content="Decano Barbería 1207: corte, fade, barba y afeitado con navaja en Romanzza, Chihuahua. Agenda tu cita por WhatsApp.">
+<meta name="theme-color" content="#0E1631">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ultra&family=Mr+Dafoe&family=Oswald:wght@500;600;700&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Manrope:wght@500;600;700;800&display=swap">
+<style>
+/* Layout: an old-school barbershop after dark. Navy tiled wall, a neon sign, the barber chair in a spotlight
+   on a checkered floor, a felt letter board for the services, a "shave it yourself" game, a ticket dispenser
+   that opens the booking chat, and the shop window with gold-leaf lettering under a striped awning. */
+:root{
+  color-scheme:dark;
+  --muro:#0E1631;       /* navy tiled wall */
+  --muro-2:#15214A;
+  --crema:#FFF4E2;      /* main text */
+  --hueso:#F7DFB8;      /* secondary text: warm, never gray */
+  --linea:rgba(255,244,226,.16);
+  --rojo:#E3263B;       /* barber-pole red */
+  --rojo-hondo:#9C1424;
+  --neon:#FF3B55;
+  --azul:#2F56C8;       /* barber-pole blue */
+  --oro:#EBB95A;        /* gold leaf */
+  --oro-claro:#FFE6A8;
+  --wa:#22B35E;
+  --letrero:"Ultra","Rockwell Extra Bold","Georgia",serif;
+  --neonf:"Mr Dafoe","Brush Script MT",cursive;
+  --firma:"Mr Dafoe","Brush Script MT",cursive;
+  --tablero:"Oswald","Impact","Arial Narrow",sans-serif;
+  --texto:"Libre Caslon Text","Baskerville",Georgia,serif;
+  --sans:"Manrope","Helvetica Neue",Arial,sans-serif;
+  --gutter:max(20px,env(safe-area-inset-left,0px));
+  --gutter-r:max(20px,env(safe-area-inset-right,0px));
+  --ancho:1200px;
+  --franjas:repeating-linear-gradient(-45deg,var(--rojo) 0 16px,var(--crema) 16px 28px,var(--azul) 28px 44px,var(--crema) 44px 56px);
+}
+*{box-sizing:border-box}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--crema);font:400 1.08rem/1.7 var(--texto);-webkit-font-smoothing:antialiased;
+  background-color:var(--muro);
+  /* subway tiles: staggered rows of bevelled bricks */
+  background-image:
+    linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px),
+    linear-gradient(180deg,rgba(255,255,255,.025),rgba(0,0,0,.08));
+  background-size:100% 36px,72px 72px,72px 72px,100% 36px;
+  background-position:0 0,0 0,36px 36px,0 0}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+img,canvas,svg{max-width:100%}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--oro);outline-offset:4px;border-radius:6px}
+h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
+p{margin:0}
+.cont{max-width:var(--ancho);margin-inline:auto;padding-left:var(--gutter);padding-right:var(--gutter-r)}
+.etiqueta{font:600 .82rem/1 var(--tablero);letter-spacing:.32em;text-transform:uppercase;color:var(--oro);display:inline-flex;align-items:center;gap:12px}
+.etiqueta::before{content:"";width:34px;height:6px;border-radius:3px;background:var(--franjas);background-size:56px 56px}
+.titulo{font:400 clamp(2.4rem,6.4vw,4.2rem)/1.02 var(--letrero);color:var(--crema);text-shadow:3px 3px 0 var(--rojo-hondo),6px 6px 0 rgba(0,0,0,.35)}
+.titulo em{font:400 1.25em/1 var(--neonf);font-style:normal;color:var(--oro-claro);text-shadow:0 0 6px rgba(255,214,140,.7),0 0 20px rgba(235,185,90,.5);padding-right:.1em}
+
+/* ---------- neon ---------- */
+.neon{font-family:var(--neonf);color:#FFE9EC;
+  text-shadow:0 0 2px #fff,0 0 6px #fff,0 0 12px var(--neon),0 0 24px var(--neon),0 0 48px var(--neon),0 0 90px rgba(255,59,85,.6)}
+.neon-azul{color:#E6F1FF;text-shadow:0 0 2px #fff,0 0 6px #fff,0 0 12px #3D8BFF,0 0 24px #3D8BFF,0 0 48px #3D8BFF,0 0 90px rgba(61,139,255,.6)}
+@media (prefers-reduced-motion:no-preference){
+  .neon{animation:enciende 2.6s steps(1) .3s both}
+  @keyframes enciende{0%{opacity:.15}8%{opacity:1}11%{opacity:.25}15%{opacity:1}40%{opacity:1}42%{opacity:.5}44%{opacity:1}100%{opacity:1}}
+  .neon .parpadea{animation:parpadeo 7s steps(1) 3s infinite}
+  @keyframes parpadeo{0%,92%,100%{opacity:1}93%{opacity:.3}95%{opacity:1}96%{opacity:.45}}
+}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:20;padding-top:env(safe-area-inset-top,0px);background:rgba(10,16,36,.8);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.nav::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:4px;background:var(--franjas);background-size:56px 56px;opacity:.9}
+.nav .cont{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:10px}
+.marca{display:flex;align-items:baseline;gap:10px}
+.marca .neon{font-size:2.3rem;line-height:1;animation:none}
+.marca small{font:600 .74rem/1 var(--tablero);letter-spacing:.3em;color:var(--oro)}
+.nav ul{display:none;list-style:none;margin:0;padding:0;gap:30px;font:600 .86rem/1 var(--tablero);letter-spacing:.24em;text-transform:uppercase;color:var(--hueso)}
+.nav ul a:hover{color:var(--crema);text-shadow:0 0 10px rgba(255,59,85,.8)}
+.nav .btn{display:none}
+
+/* ---------- buttons: enamel signs ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;font:700 .95rem/1 var(--tablero);letter-spacing:.18em;text-transform:uppercase;padding:1rem 1.5rem;border-radius:12px;min-height:54px;cursor:pointer;
+  border:0;white-space:nowrap;background:none;transition:transform .2s ease,box-shadow .2s ease}
+.btn svg{width:20px;height:20px;flex:none}
+.btn-rojo{background:linear-gradient(180deg,#F2404F,var(--rojo) 55%,#B81B2E);color:var(--crema);
+  box-shadow:inset 0 0 0 2px var(--rojo),inset 0 0 0 4px rgba(255,244,226,.9),0 5px 0 #6E0E19,0 14px 24px -8px rgba(0,0,0,.6)}
+.btn-rojo:hover{transform:translateY(-2px);box-shadow:inset 0 0 0 2px var(--rojo),inset 0 0 0 4px rgba(255,244,226,.9),0 7px 0 #6E0E19,0 18px 28px -8px rgba(0,0,0,.6)}
+.btn-rojo:active{transform:translateY(4px);box-shadow:inset 0 0 0 2px var(--rojo),inset 0 0 0 4px rgba(255,244,226,.9),0 1px 0 #6E0E19}
+.btn-crema{background:linear-gradient(180deg,#FFF8EC,#F1E1C4);color:var(--muro);
+  box-shadow:inset 0 0 0 2px #F1E1C4,inset 0 0 0 4px var(--azul),0 5px 0 #A8926C,0 14px 24px -8px rgba(0,0,0,.6)}
+.btn-crema:hover{transform:translateY(-2px)}
+.btn-crema:active{transform:translateY(4px);box-shadow:inset 0 0 0 2px #F1E1C4,inset 0 0 0 4px var(--azul),0 1px 0 #A8926C}
+.btn-wa{background:linear-gradient(180deg,#2BC56A,#169449);color:#fff;box-shadow:0 5px 0 #0C5F2E,0 14px 24px -8px rgba(0,0,0,.6)}
+.btn-wa:hover{transform:translateY(-2px)}
+.btn-wa:active{transform:translateY(4px);box-shadow:0 1px 0 #0C5F2E}
+.nav .btn{min-height:44px;padding:.75rem 1.1rem;font-size:.82rem}
+.acciones{display:flex;flex-wrap:wrap;gap:16px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;isolation:isolate;overflow:hidden;padding-top:4px}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(38% 46% at 72% 30%,rgba(255,236,200,.16),transparent 70%),radial-gradient(40% 50% at 12% 30%,rgba(255,59,85,.16),transparent 70%),radial-gradient(50% 40% at 90% 90%,rgba(61,139,255,.14),transparent 70%)}
+.hero .cont{display:grid;grid-template-areas:"titulo" "escena" "texto";gap:10px;padding-block:28px 64px}
+.rotulo-hero{grid-area:titulo;display:grid;justify-items:start;gap:4px;min-width:0}
+.hero h1{display:grid;justify-items:start}
+.hero h1 .neon{font-size:clamp(5.2rem,25vw,10.5rem);line-height:.9;padding:0 .12em 0 .02em;transform:rotate(-6deg);transform-origin:0 70%;margin:.1em 0 .1em}
+.placa{display:inline-grid;justify-items:center;gap:2px;padding:12px 24px 10px;border-radius:14px;background:linear-gradient(180deg,#FFF8EC,#EADAB9);color:var(--muro);
+  box-shadow:inset 0 0 0 3px #EADAB9,inset 0 0 0 5px var(--azul),inset 0 0 0 8px #EADAB9,inset 0 0 0 9px var(--rojo),0 10px 24px -8px rgba(0,0,0,.7);transform:rotate(-1.5deg);margin-left:8px}
+.placa b{font:400 clamp(1.3rem,4.6vw,1.9rem)/1 var(--letrero);letter-spacing:.06em}
+.placa span{font:700 .78rem/1 var(--tablero);letter-spacing:.42em;color:var(--rojo-hondo)}
+.placa::before,.placa::after{content:"";position:absolute;top:50%;width:7px;height:7px;margin-top:-3.5px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#9a8a6a)}
+.placa{position:relative}
+.placa::before{left:9px}.placa::after{right:9px}
+.texto-hero{grid-area:texto;display:grid;gap:26px;align-content:start;min-width:0}
+.lede{font:italic 400 clamp(1.18rem,2.6vw,1.42rem)/1.6 var(--texto);color:var(--hueso);max-width:34ch;text-wrap:pretty}
+.lede strong{font-style:normal;font-weight:700;color:var(--crema)}
+.datos{display:flex;flex-wrap:wrap;gap:12px 26px;font:600 .9rem/1.3 var(--tablero);letter-spacing:.14em;text-transform:uppercase;color:var(--crema)}
+.datos span{display:inline-flex;align-items:center;gap:10px}
+.datos i{width:10px;height:10px;border-radius:50%;background:var(--oro);box-shadow:0 0 10px var(--oro)}
+.datos a{border-bottom:1px solid rgba(235,185,90,.5)}
+
+.escena{grid-area:escena;position:relative;width:100%;aspect-ratio:1/1;max-width:520px;margin-inline:auto;touch-action:pan-y;cursor:grab}
+.escena svg.fallback,.escena canvas{position:absolute;inset:0;width:100%;height:100%}
+.escena canvas{opacity:0;transition:opacity 1s ease;-webkit-mask-image:radial-gradient(closest-side,#000 72%,transparent);mask-image:radial-gradient(closest-side,#000 72%,transparent)}
+.escena.vivo canvas{opacity:1}
+.escena.vivo svg.fallback{opacity:0;transition:opacity 1s ease}
+.escena .pista{position:absolute;left:50%;bottom:2%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;pointer-events:none;white-space:nowrap;
+  font:600 .74rem/1 var(--tablero);letter-spacing:.3em;text-transform:uppercase;color:var(--oro-claro);background:rgba(10,16,36,.7);padding:9px 14px;border-radius:999px;border:1px solid rgba(235,185,90,.35)}
+.escena .pista svg{width:16px;height:16px}
+.escena:not(.vivo) .pista{display:none}
+
+/* barber pole band */
+.poste-banda{height:26px;background:var(--franjas);background-size:56px 56px;position:relative;box-shadow:0 10px 24px -10px rgba(0,0,0,.8)}
+.poste-banda::before,.poste-banda::after{content:"";position:absolute;left:0;right:0;height:6px;background:linear-gradient(180deg,#FFF6DA,#C9963F 60%,#8A6224)}
+.poste-banda::before{top:-6px}.poste-banda::after{bottom:-6px;transform:scaleY(-1)}
+.poste-banda span{position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.35),transparent 40%,rgba(0,0,0,.35))}
+@media (prefers-reduced-motion:no-preference){ .poste-banda{animation:sube-poste 2.4s linear infinite} @keyframes sube-poste{to{background-position:56px 0}} }
+
+section{padding-block:100px;position:relative}
+.intro{display:grid;gap:18px;align-content:start;max-width:520px}
+.intro p:not(.etiqueta){color:var(--hueso);font-style:italic;font-size:1.15rem}
+
+/* ---------- letter board ---------- */
+.menu-sec .cont{display:grid;gap:48px;align-items:center}
+.tablero-marco{position:relative;padding-top:54px;perspective:1400px}
+.tablero-marco::before{content:"";position:absolute;left:50%;top:0;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#FFF1C9,#B98A3A 60%,#5C4012);box-shadow:0 2px 4px rgba(0,0,0,.6);z-index:2}
+.tablero-marco::after{content:"";position:absolute;left:50%;top:7px;width:62%;height:56px;transform:translateX(-50%);z-index:1;pointer-events:none;
+  background:linear-gradient(to bottom right,transparent calc(50% - 1px),#C9A36A calc(50% - 1px),#C9A36A calc(50% + 1px),transparent calc(50% + 1px)) left/50% 100% no-repeat,
+             linear-gradient(to bottom left,transparent calc(50% - 1px),#C9A36A calc(50% - 1px),#C9A36A calc(50% + 1px),transparent calc(50% + 1px)) right/50% 100% no-repeat}
+.tablero{position:relative;border-radius:10px;padding:clamp(18px,4vw,34px);transform:rotateY(var(--ty,0deg)) rotateX(var(--tx,0deg)) rotate(-1deg);transform-origin:50% 0;transition:transform .6s cubic-bezier(.2,.7,.2,1);
+  background:#121212 repeating-linear-gradient(180deg,rgba(255,255,255,.055) 0 2px,transparent 2px 11px);
+  box-shadow:inset 0 0 0 12px #6B4320,inset 0 0 0 14px #3E2410,inset 0 0 0 16px #8C5A2C,inset 0 0 40px 18px rgba(0,0,0,.65),0 30px 60px -20px rgba(0,0,0,.85)}
+.tablero::before{content:"";position:absolute;inset:0;border-radius:10px;pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.07),transparent 40%)}
+.tablero-in{padding:14px clamp(10px,3vw,22px);display:grid;gap:4px}
+.letras{font:600 clamp(1.15rem,3.4vw,1.7rem)/1.25 var(--tablero);letter-spacing:.1em;text-transform:uppercase;color:#F8F3E8;text-shadow:0 1px 0 rgba(0,0,0,.8),0 2px 3px rgba(0,0,0,.5)}
+.tablero .cab{text-align:center;color:var(--oro-claro);font-size:clamp(.9rem,2.6vw,1.2rem);letter-spacing:.3em;margin-bottom:14px}
+.tablero .pie{text-align:center;font-size:clamp(.78rem,2.2vw,1rem);letter-spacing:.24em;color:#FF6B7B;margin-top:16px}
+.fila{font:inherit;letter-spacing:inherit;text-transform:uppercase;color:inherit;display:grid;grid-template-columns:auto 1fr auto;align-items:end;gap:12px;width:100%;padding:10px 6px 4px;border:0;background:none;cursor:pointer;text-align:left;border-radius:6px;transition:background .2s}
+.fila .puntos{border-bottom:3px dotted rgba(248,243,232,.4);margin-bottom:.45em;min-width:20px}
+.fila .accion{color:#FF6B7B;font-size:.8em;display:inline-flex;align-items:center;gap:6px}
+.fila .accion svg{width:16px;height:16px}
+.fila:hover,.fila:focus-visible{background:rgba(255,255,255,.04)}
+.fila:hover .nombre{color:var(--oro-claro)}
+.fila:hover .accion{color:#FF8F9B;text-shadow:0 0 10px rgba(255,59,85,.8)}
+.desc{font:500 clamp(.72rem,2vw,.86rem)/1.4 var(--tablero);letter-spacing:.16em;text-transform:uppercase;color:#D9CDB8;padding:0 6px 10px;border-bottom:1px solid rgba(255,255,255,.06)}
+
+/* ---------- shave game ---------- */
+.juego-sec{background:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.05))}
+.juego-sec .cont{display:grid;gap:40px;align-items:center}
+.medidor{display:grid;gap:10px;max-width:420px}
+.medidor .barra-p{height:16px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;box-shadow:inset 0 0 0 1px var(--linea)}
+.medidor .relleno{height:100%;width:0%;background:var(--franjas);background-size:56px 56px;border-radius:999px;transition:width .3s ease}
+.medidor .lectura{display:flex;justify-content:space-between;font:600 .86rem/1 var(--tablero);letter-spacing:.22em;text-transform:uppercase;color:var(--hueso)}
+.medidor .lectura b{color:var(--oro-claro);font-size:1.1rem;letter-spacing:.08em}
+.logro{font:italic 400 1.2rem/1.5 var(--texto);color:var(--oro-claro)}
+.silla-juego{position:relative;width:100%;max-width:520px;aspect-ratio:1/1;margin-inline:auto;border-radius:50%;touch-action:none;cursor:none;user-select:none;-webkit-user-select:none;
+  background:radial-gradient(closest-side,rgba(255,236,200,.18),transparent 80%)}
+.silla-juego canvas{position:absolute;inset:0;width:100%;height:100%;border-radius:50%}
+.silla-juego::after{content:"";position:absolute;inset:-14px;border-radius:50%;border:2px dashed rgba(235,185,90,.3);pointer-events:none}
+.maquinilla{position:absolute;left:0;top:0;width:76px;height:76px;pointer-events:none;opacity:0;transition:opacity .2s;z-index:3;filter:drop-shadow(0 8px 10px rgba(0,0,0,.6))}
+.silla-juego.encima .maquinilla{opacity:1}
+.maquinilla svg{width:100%;height:100%;transform:rotate(-28deg);transform-origin:50% 12%}
+.silla-juego.cortando .maquinilla svg{animation:zumba .06s linear infinite}
+@keyframes zumba{50%{transform:rotate(-28deg) translate(1px,-1px)}}
+.silla-juego .aviso-dedo{position:absolute;left:50%;bottom:6%;transform:translateX(-50%);pointer-events:none;white-space:nowrap;font:600 .74rem/1 var(--tablero);letter-spacing:.26em;text-transform:uppercase;color:var(--oro-claro);background:rgba(10,16,36,.78);padding:9px 14px;border-radius:999px;border:1px solid rgba(235,185,90,.35);transition:opacity .3s}
+.silla-juego.usado .aviso-dedo{opacity:0}
+@media (hover:none){ .silla-juego{cursor:auto} }
+
+/* ---------- ticket dispenser ---------- */
+.turno-sec .cont{display:grid;gap:56px;align-items:center}
+.pasitos{list-style:none;margin:0;padding:0;display:grid;gap:16px;counter-reset:p}
+.pasitos li{display:grid;grid-template-columns:52px 1fr;gap:16px;align-items:center;font:italic 400 1.1rem/1.5 var(--texto);color:var(--hueso)}
+.pasitos li::before{counter-increment:p;content:counter(p);display:grid;place-items:center;width:52px;height:52px;border-radius:50%;font:400 1.5rem/1 var(--letrero);color:var(--crema);
+  background:radial-gradient(circle at 35% 30%,#F2404F,var(--rojo-hondo));box-shadow:inset 0 0 0 3px rgba(255,244,226,.85),0 4px 0 #5C0B15}
+.pasitos b{font-style:normal;color:var(--crema)}
+.turnero{position:relative;width:min(100%,340px);margin-inline:auto;display:grid;justify-items:center}
+.dispensador{position:relative;width:100%;border-radius:140px 140px 26px 26px;padding:34px 26px 30px;text-align:center;z-index:2;
+  background:radial-gradient(120% 70% at 35% 15%,#FF5A68,var(--rojo) 45%,#8E1121 100%);
+  box-shadow:inset 0 0 0 4px rgba(255,255,255,.12),inset 0 -18px 30px rgba(0,0,0,.35),0 30px 50px -20px rgba(0,0,0,.85)}
+.dispensador .ojo{width:72px;height:72px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#FFF8EC,#E8D6B2);box-shadow:inset 0 0 0 4px var(--azul),0 4px 10px rgba(0,0,0,.4);
+  font:400 1.6rem/1 var(--letrero);color:var(--rojo-hondo)}
+.dispensador b{display:block;font:400 clamp(1.3rem,5vw,1.7rem)/1.05 var(--letrero);color:var(--crema);text-shadow:2px 2px 0 #6E0E19}
+.dispensador small{display:block;margin-top:8px;font:600 .74rem/1 var(--tablero);letter-spacing:.3em;color:#FFD9DD}
+.ranura{height:16px;margin:22px 10px 0;border-radius:8px;background:#1a0306;box-shadow:inset 0 3px 6px rgba(0,0,0,.9),0 1px 0 rgba(255,255,255,.18)}
+.salida{position:relative;width:84%;height:230px;margin-top:-14px;overflow:hidden;z-index:1}
+.boleto{position:absolute;left:0;right:0;top:0;height:200px;border:0;padding:30px 18px 16px;cursor:grab;touch-action:none;display:grid;align-content:end;justify-items:center;gap:6px;color:var(--muro);
+  background:linear-gradient(180deg,#FFF9EE,#F3E3C6);transform:translateY(calc(-100% + 96px + var(--tirar,0px)));transition:transform .5s cubic-bezier(.2,.8,.2,1);
+  -webkit-mask:radial-gradient(circle 9px at 0 50%,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 9px at 100% 50%,#0000 98%,#000) right/51% 100% no-repeat;
+          mask:radial-gradient(circle 9px at 0 50%,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 9px at 100% 50%,#0000 98%,#000) right/51% 100% no-repeat}
+.boleto.arrastrando{transition:none;cursor:grabbing}
+.boleto::before{content:"";position:absolute;left:14px;right:14px;top:30%;border-top:2px dashed rgba(14,22,49,.25)}
+.boleto small{font:700 .72rem/1 var(--tablero);letter-spacing:.4em;color:var(--rojo)}
+.boleto strong{font:400 1.7rem/1 var(--letrero)}
+.boleto span{font:italic 400 .95rem/1.3 var(--texto);color:#3A2A18}
+.boleto em{font:700 .68rem/1 var(--tablero);font-style:normal;letter-spacing:.3em;color:var(--azul)}
+.boleto.fuera{transform:translateY(0)}
+.boleto.arrancado{transition:transform .7s cubic-bezier(.5,0,.7,.4),opacity .7s;transform:translateY(140%) rotate(14deg);opacity:0}
+.turnero .tira{font:600 .74rem/1 var(--tablero);letter-spacing:.28em;text-transform:uppercase;color:var(--oro-claro);margin-top:6px;display:flex;align-items:center;gap:8px}
+.turnero .tira svg{width:16px;height:16px}
+@media (prefers-reduced-motion:no-preference){ .boleto:not(.fuera):not(.arrastrando):not(.arrancado){animation:asoma 2.8s ease-in-out infinite} @keyframes asoma{50%{transform:translateY(calc(-100% + 112px))}} }
+
+/* ---------- storefront ---------- */
+.fachada{position:relative;max-width:980px;margin-inline:auto}
+.toldo{position:relative;height:clamp(64px,10vw,96px);border-radius:10px 10px 0 0;z-index:2;
+  background:repeating-linear-gradient(90deg,var(--rojo) 0 clamp(28px,4vw,44px),var(--crema) clamp(28px,4vw,44px) clamp(56px,8vw,88px));
+  box-shadow:inset 0 14px 18px -10px rgba(255,255,255,.4),inset 0 -12px 18px -6px rgba(0,0,0,.35),0 14px 20px -8px rgba(0,0,0,.6)}
+.toldo::after{content:"";position:absolute;left:0;right:0;top:100%;height:22px;
+  background:radial-gradient(ellipse 25% 100% at 25% 0,var(--rojo) 96%,transparent 100%) 0 0/clamp(56px,8vw,88px) 100% repeat-x,radial-gradient(ellipse 25% 100% at 75% 0,var(--crema) 96%,transparent 100%) 0 0/clamp(56px,8vw,88px) 100% repeat-x;filter:drop-shadow(0 6px 4px rgba(0,0,0,.4))}
+.toldo span{position:absolute;inset:auto 0 0;height:12px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.25))}
+.vitrina{position:relative;margin:0 3%;padding:clamp(34px,6vw,56px) clamp(14px,4vw,40px) clamp(20px,4vw,34px);
+  background:linear-gradient(180deg,#0A0F22,#111C3D 60%,#0A0F22);
+  box-shadow:inset 0 0 0 10px #1B1108,inset 0 0 0 12px var(--oro),inset 0 0 0 14px #1B1108,inset 0 0 60px rgba(0,0,0,.8),0 30px 60px -20px rgba(0,0,0,.85)}
+.vitrina::before{content:"";position:absolute;inset:14px;pointer-events:none;background:linear-gradient(115deg,transparent 18%,rgba(255,255,255,.07) 26%,transparent 34%,transparent 58%,rgba(255,255,255,.05) 64%,transparent 70%)}
+.vitrina svg.oro{display:block;width:100%;height:auto;overflow:visible}
+.colgante{position:absolute;right:clamp(14px,5%,48px);top:calc(100% - 4px);z-index:3;transform-origin:50% 0;display:grid;justify-items:center}
+.colgante::before{content:"";width:60%;height:26px;background:linear-gradient(to bottom right,transparent calc(50% - 1px),var(--oro) 50%,transparent calc(50% + 1px)) left/50% 100% no-repeat,linear-gradient(to bottom left,transparent calc(50% - 1px),var(--oro) 50%,transparent calc(50% + 1px)) right/50% 100% no-repeat}
+.colgante span{display:block;padding:10px 16px;border-radius:8px;background:linear-gradient(180deg,#FFF8EC,#EADAB9);color:var(--rojo-hondo);font:400 1rem/1 var(--letrero);letter-spacing:.06em;box-shadow:inset 0 0 0 2px var(--azul),0 8px 14px rgba(0,0,0,.5)}
+@media (prefers-reduced-motion:no-preference){ .colgante{animation:mece 4s ease-in-out infinite} @keyframes mece{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}} }
+.banqueta{height:16px;margin:0 1%;background:linear-gradient(180deg,#2A2F45,#151A2C);border-radius:0 0 8px 8px;box-shadow:0 20px 30px -10px rgba(0,0,0,.8)}
+.visita-datos{display:grid;gap:26px;margin-top:64px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));align-items:start}
+.visita-datos address{font-style:normal;font-size:1.12rem;line-height:1.7;color:var(--hueso)}
+.visita-datos address strong{display:block;font:400 1.5rem/1.2 var(--letrero);color:var(--crema);margin-bottom:6px}
+.tel{display:grid;gap:4px;font:400 clamp(1.9rem,5vw,2.4rem)/1 var(--letrero);color:var(--crema);text-shadow:3px 3px 0 var(--rojo-hondo)}
+.tel small{font:600 .74rem/1.4 var(--tablero);letter-spacing:.3em;text-transform:uppercase;color:var(--oro);text-shadow:none}
+
+/* ---------- hours strip and reviews ---------- */
+.horario{display:grid;gap:2px;padding:16px 18px;border-radius:10px;background:#121212 repeating-linear-gradient(180deg,rgba(255,255,255,.05) 0 2px,transparent 2px 10px);box-shadow:inset 0 0 0 6px #6B4320,inset 0 0 0 8px #3E2410,0 14px 30px -14px rgba(0,0,0,.8)}
+.horario div{display:flex;justify-content:space-between;gap:16px;padding:6px 4px;font:600 1rem/1.3 var(--tablero);letter-spacing:.12em;text-transform:uppercase;color:#F8F3E8}
+.horario div b{font-weight:600;color:var(--oro-claro)}
+.resenas{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+.resena{position:relative;padding:30px 26px 24px;border-radius:6px;background:linear-gradient(180deg,#FFF8EC,#F1E1C4);color:var(--muro);box-shadow:0 18px 30px -14px rgba(0,0,0,.8);transform:rotate(var(--g,-1deg))}
+.resena:nth-child(2n){--g:1.2deg}.resena:nth-child(3n){--g:-.4deg}
+.resena::before{content:"";position:absolute;left:50%;top:-10px;width:22px;height:22px;margin-left:-11px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#FF6B7B,var(--rojo-hondo));box-shadow:0 3px 4px rgba(0,0,0,.5)}
+.resena .estrellas{color:#D99A1E;letter-spacing:.2em;font-size:1.1rem}
+.resena p{font:italic 400 1.08rem/1.6 var(--texto);margin:10px 0 14px}
+.resena b{font:700 .82rem/1 var(--tablero);letter-spacing:.24em;text-transform:uppercase;color:var(--rojo-hondo)}
+
+/* ---------- closing ---------- */
+.cierre{text-align:center;overflow:hidden}
+.cierre .cont{display:grid;justify-items:center;gap:22px}
+.cierre .neon{font-size:clamp(4.6rem,16vw,9rem);line-height:1;transform:rotate(-4deg);padding:0 .15em}
+.cierre p{color:var(--hueso);font-style:italic;max-width:42ch;font-size:1.15rem}
+footer{position:relative;color:var(--hueso);font-size:.98rem;font-style:italic}
+footer .cont{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding-block:30px 112px}
+footer .neon{font-size:2rem;font-style:normal;animation:none}
+
+/* pinned phone bar */
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;justify-content:center;
+  padding:14px var(--gutter-r) calc(14px + env(safe-area-inset-bottom,0px)) var(--gutter);
+  background:linear-gradient(180deg,rgba(10,16,36,0),rgba(10,16,36,.95) 38%);transition:transform .4s ease,opacity .4s ease}
+.barra .btn{flex:1;max-width:440px}
+.barra.oculta{transform:translateY(110%);opacity:0;pointer-events:none}
+
+@media (min-width:780px){
+  .nav ul{display:flex}
+  .nav .btn{display:inline-flex}
+}
+@media (min-width:960px){
+  .hero .cont{grid-template-columns:1fr 1.05fr;grid-template-areas:"titulo escena" "texto escena";grid-template-rows:1fr 1fr;column-gap:30px;row-gap:34px;padding-block:44px 80px;min-height:min(840px,calc(100svh - 70px));align-items:center}
+  .rotulo-hero{align-self:end}
+  .texto-hero{align-self:start}
+  .hero h1 .neon{font-size:clamp(7rem,10.5vw,11rem)}
+  .escena{max-width:700px}
+  .menu-sec .cont{grid-template-columns:.8fr 1.2fr}
+  .juego-sec .cont{grid-template-columns:1fr 1fr}
+  .turno-sec .cont{grid-template-columns:1.1fr .9fr}
+  .barra{display:none}
+  footer .cont{padding-bottom:30px}
+}
+@media (prefers-reduced-motion:no-preference){
+  @supports (animation-timeline:view()){
+    .revela{animation:revela linear both;animation-timeline:view();animation-range:entry 0% cover 26%}
+    @keyframes revela{from{opacity:.3;transform:translateY(40px)}to{opacity:1;transform:none}}
+  }
+}
+body::after{content:"";position:fixed;inset:0;z-index:40;pointer-events:none;opacity:.06;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+</style>
+</head>
+<body>
+
+<script>
+/* ======================================================================
+   DATOS DEL NEGOCIO: cambia solo este bloque.
+   ====================================================================== */
+window.NEGOCIO = {
+  nombre: "Decano",
+  completo: "Decano Barbería 1207",
+  whatsapp: "526145372192",           // 52 + 10 dígitos
+  telefono: "+526145372192",
+  telefonoVisible: "614 537 2192",
+  mensajeWhatsApp: "Hola, quiero agendar una cita en Decano Barbería 1207:",
+  direccion: {
+    calle: "Calle Santo Tomé y Príncipe",
+    colonia: "Romanzza, C.P. 31313",
+    ciudad: "Chihuahua, Chihuahua"
+  },
+  mapa: "https://www.google.com/maps/search/?api=1&query=Decano+Barber%C3%ADa+1207+Santo+Tom%C3%A9+y+Pr%C3%ADncipe+Romanzza+Chihuahua",
+  /* Llena estos tres con lo que diga el dueño; mientras estén vacíos no se muestra nada inventado.
+     horario: [["Lunes a viernes", "10:00 a 20:00"], ["Sábado", "10:00 a 18:00"]]
+     precio en cada servicio: precio: "$150"
+     resenas: [{ texto: "Excelente corte", autor: "Juan P.", estrellas: 5 }] */
+  horario: [],
+  resenas: [],
+  servicios: [
+    { nombre: "Corte clásico", desc: "Tijera y máquina, a la medida de tu cara" },
+    { nombre: "Fade", desc: "Del cero a lo que pidas, sin escalones" },
+    { nombre: "Barba", desc: "Perfilada, rebajada y con forma" },
+    { nombre: "Afeitado con navaja", desc: "Espuma y navaja, al ras como antes" }
+  ]
+};
+</script>
+
+<nav class="nav" aria-label="Principal">
+  <div class="cont">
+    <a class="marca" href="#inicio" aria-label="Decano Barbería 1207, inicio"><span class="neon">Decano</span><small>1207</small></a>
+    <ul><li><a href="#servicios">Servicios</a></li><li><a href="#juego">Pásale la máquina</a></li><li><a href="#turno">Agendar</a></li><li><a href="#visita">Visítanos</a></li></ul>
+    <a class="btn btn-rojo" data-wa href="#turno">Agenda tu cita</a>
+  </div>
+</nav>
+
+<header class="hero" id="inicio">
+  <div class="cont">
+    <div class="rotulo-hero">
+      <h1><span class="neon">De<span class="parpadea">c</span>ano</span><span class="placa"><b>BARBERÍA</b><span>N.º 1207</span></span></h1>
+    </div>
+    <div class="texto-hero">
+      <p class="lede">Nadie se levanta de esta silla igual que como llegó. <strong>Corte, fade, barba y navaja</strong> en Romanzza, Chihuahua. Agenda por WhatsApp, llega a tu hora y siéntate.</p>
+      <div class="acciones">
+        <a class="btn btn-rojo" data-wa href="#turno">Agenda tu cita</a>
+        <a class="btn btn-crema" href="#servicios">Ver servicios</a>
+      </div>
+      <div class="datos">
+        <span><i></i>Romanzza, Chihuahua</span>
+        <span><i></i>Con cita</span>
+        <span><i></i><a href="tel:+526145372192">614 537 2192</a></span>
+      </div>
+    </div>
+    <div class="escena" id="escena" role="img" aria-label="Silla de barbero clásica en 3D, de piel roja y cromo, bajo un reflector sobre piso de ajedrez">
+      <svg class="fallback" viewBox="0 0 400 400" aria-hidden="true">
+        <defs>
+          <radialGradient id="fpiso" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+          <linearGradient id="fpiel" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#D03241"/><stop offset="1" stop-color="#7E111E"/></linearGradient>
+          <linearGradient id="fcromo" x1="0" x2="1"><stop offset="0" stop-color="#6d7488"/><stop offset=".4" stop-color="#fff"/><stop offset=".7" stop-color="#b9c0cf"/><stop offset="1" stop-color="#5a6070"/></linearGradient>
+        </defs>
+        <polygon points="200,0 120,330 280,330" fill="#FFF1D6" opacity=".06"/>
+        <ellipse cx="200" cy="335" rx="170" ry="40" fill="url(#fpiso)"/>
+        <ellipse cx="200" cy="335" rx="90" ry="16" fill="#000" opacity=".5"/>
+        <ellipse cx="200" cy="328" rx="70" ry="12" fill="url(#fcromo)"/>
+        <rect x="190" y="250" width="20" height="80" fill="url(#fcromo)"/>
+        <rect x="150" y="80" width="100" height="130" rx="22" fill="url(#fpiel)"/>
+        <g stroke="#6E0E19" stroke-width="3" opacity=".6"><path d="M170 92v108M190 92v108M210 92v108M230 92v108"/></g>
+        <rect x="170" y="56" width="60" height="22" rx="10" fill="url(#fpiel)"/>
+        <rect x="140" y="205" width="120" height="40" rx="16" fill="url(#fpiel)"/>
+        <rect x="120" y="190" width="26" height="14" rx="6" fill="url(#fpiel)"/><rect x="254" y="190" width="26" height="14" rx="6" fill="url(#fpiel)"/>
+        <path d="M133 204v30h16M267 204v30h-16" stroke="url(#fcromo)" stroke-width="6" fill="none"/>
+        <rect x="160" y="282" width="80" height="8" rx="3" fill="url(#fcromo)"/>
+      </svg>
+      <canvas id="lienzo" aria-hidden="true"></canvas>
+      <span class="pista"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12h16M8 8l-4 4 4 4M16 8l4 4-4 4"/></svg>Gira la silla</span>
+    </div>
+  </div>
+</header>
+
+<div class="poste-banda" aria-hidden="true"><span></span></div>
+
+<section class="menu-sec" id="servicios">
+  <div class="cont">
+    <div class="intro revela">
+      <p class="etiqueta">Servicios</p>
+      <h2 class="titulo">El menú <em>de la casa</em></h2>
+      <p>Cuatro servicios, hechos con calma y buen pulso. Toca el que quieras y te apartamos el lugar en un minuto.</p>
+    </div>
+    <div class="tablero-marco revela">
+      <div class="tablero" id="tablero">
+        <div class="tablero-in letras" id="tablero-lista"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="poste-banda" aria-hidden="true"><span></span></div>
+
+<section class="juego-sec" id="juego">
+  <div class="cont">
+    <div class="intro revela">
+      <p class="etiqueta">Pásale la máquina</p>
+      <h2 class="titulo">Hazle el corte <em>tú mismo</em></h2>
+      <p>Practica aquí: arrastra la máquina sobre el pelo y la barba hasta dejarlo limpio. Para el tuyo, mejor déjalo en manos de la casa.</p>
+      <div class="medidor" aria-live="polite">
+        <div class="lectura"><span>Corte</span><b id="pct">0%</b></div>
+        <div class="barra-p"><div class="relleno" id="relleno"></div></div>
+      </div>
+      <p class="logro" id="logro" hidden>¡Quedó fino! Ahora sí, aparta tu lugar en la silla.</p>
+      <div class="acciones"><button type="button" class="btn btn-crema" id="otra-vez">Otra vez</button><a class="btn btn-rojo" data-wa href="#turno">Agenda el tuyo</a></div>
+    </div>
+    <div class="silla-juego revela" id="juego-lienzo" role="img" aria-label="Juego: un cliente con pelo y barba largos; arrastra la máquina para cortarle">
+      <canvas id="j-base" aria-hidden="true"></canvas>
+      <canvas id="j-pelo" aria-hidden="true"></canvas>
+      <canvas id="j-migas" aria-hidden="true"></canvas>
+      <div class="maquinilla" id="maquinilla" aria-hidden="true"><svg viewBox="0 0 64 64">
+        <defs><linearGradient id="mq" x1="0" x2="1"><stop offset="0" stop-color="#8A6224"/><stop offset=".45" stop-color="#FFE6A8"/><stop offset="1" stop-color="#A8742C"/></linearGradient></defs>
+        <rect x="18" y="4" width="28" height="7" rx="2" fill="#E9EDF2" stroke="#6d7488"/>
+        <path d="M20 4v-2M24 4v-2M28 4v-2M32 4v-2M36 4v-2M40 4v-2M44 4v-2" stroke="#E9EDF2" stroke-width="1.6"/>
+        <path d="M17 11h30l-3 40c0 6-5 10-12 10s-12-4-12-10Z" fill="url(#mq)" stroke="#5C4012" stroke-width="1.2"/>
+        <rect x="27" y="22" width="10" height="16" rx="5" fill="#1a1a1a"/><circle cx="32" cy="27" r="2.5" fill="#E3263B"/>
+      </svg></div>
+      <span class="aviso-dedo">Arrastra para cortar</span>
+    </div>
+  </div>
+</section>
+
+<div class="poste-banda" aria-hidden="true"><span></span></div>
+
+<section class="turno-sec" id="turno">
+  <div class="cont">
+    <div class="intro revela">
+      <p class="etiqueta">Agendar</p>
+      <h2 class="titulo">Toma tu <em>boleto</em></h2>
+      <p>Sin filas y sin esperar parado. Jala el boleto, elige servicio, día y hora, y te confirmamos tu lugar por WhatsApp.</p>
+      <ol class="pasitos">
+        <li><span><b>Jala el boleto</b> o toca cualquier botón de agendar.</span></li>
+        <li><span><b>Elige servicio, día y hora</b> en el chat.</span></li>
+        <li><span><b>Mándalo por WhatsApp</b> y te confirmamos tu lugar.</span></li>
+      </ol>
+    </div>
+    <div class="turnero revela">
+      <div class="dispensador"><span class="ojo">D</span><b>Toma tu<br>turno</b><small>DECANO · N.º 1207</small><div class="ranura"></div></div>
+      <div class="salida"><button type="button" class="boleto" id="boleto" aria-label="Jalar el boleto y abrir el chat para agendar">
+        <small>BOLETO · UNA SILLA</small><span>Decano Barbería N.º 1207</span><em>VÁLIDO PARA AGENDAR</em><strong>JÁLAME</strong>
+      </button></div>
+      <p class="tira"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4v16M6 14l6 6 6-6"/></svg>Jálalo hacia abajo</p>
+    </div>
+  </div>
+</section>
+
+<section id="visita" style="padding-top:60px">
+  <div class="cont">
+    <div class="intro revela" style="margin-bottom:56px">
+      <p class="etiqueta">Visítanos</p>
+      <h2 class="titulo">Aquí está <em>la silla</em></h2>
+    </div>
+    <div class="fachada revela">
+      <div class="toldo" aria-hidden="true"><span></span></div>
+      <div class="vitrina">
+        <svg class="oro" viewBox="0 0 600 330" role="img" aria-label="Letrero de hoja de oro en el vidrio: Decano, Barbería N.º 1207, Romanzza, Chihuahua">
+          <defs>
+            <linearGradient id="hoja" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF3C4"/><stop offset=".35" stop-color="#F4C766"/><stop offset=".55" stop-color="#B9852E"/><stop offset=".75" stop-color="#F9D98A"/><stop offset="1" stop-color="#A06C22"/></linearGradient>
+            <path id="arco" d="M70 200 A240 150 0 0 1 530 200"/>
+          </defs>
+          <text font-family="Ultra, Georgia, serif" font-size="84" letter-spacing="6" fill="url(#hoja)" stroke="#3A2208" stroke-width="4" paint-order="stroke" text-anchor="middle"><textPath href="#arco" startOffset="50%">DECANO</textPath></text>
+          <g fill="url(#hoja)" text-anchor="middle">
+            <text x="300" y="238" font-family="Oswald, Arial Narrow, sans-serif" font-weight="600" font-size="26" letter-spacing="12">BARBERÍA · N.º 1207</text>
+            <path d="M150 256h300" stroke="url(#hoja)" stroke-width="2"/>
+            <text x="300" y="290" font-family="Mr Dafoe, cursive" font-size="40">corte · fade · barba · navaja</text>
+            <text x="300" y="322" font-family="Oswald, Arial Narrow, sans-serif" font-weight="500" font-size="15" letter-spacing="6">ROMANZZA · CHIHUAHUA</text>
+          </g>
+        </svg>
+      </div>
+      <div class="colgante" aria-hidden="true"><span>CON CITA</span></div>
+      <div class="banqueta" aria-hidden="true"></div>
+    </div>
+    <div class="visita-datos">
+      <address class="revela"><strong>Decano Barbería 1207</strong>Calle Santo Tomé y Príncipe<br>Romanzza, C.P. 31313<br>Chihuahua, Chihuahua</address>
+      <div class="revela" style="display:grid;gap:18px">
+        <a class="tel" href="tel:+526145372192"><small>Teléfono y WhatsApp</small>614 537 2192</a>
+        <p id="sin-horario" style="color:var(--hueso);font-style:italic">Trabajamos con cita para que llegues y te atiendan a tu hora. Escríbenos y te decimos qué horarios quedan libres.</p>
+        <div class="horario" id="horario" hidden></div>
+      </div>
+      <div class="acciones revela" style="align-self:center">
+        <a class="btn btn-crema" data-mapa href="#" target="_blank" rel="noopener">Cómo llegar</a>
+        <a class="btn btn-rojo" href="tel:+526145372192">Llamar</a>
+        <a class="btn btn-crema" data-mapa href="#" target="_blank" rel="noopener">Reseñas en Google</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="resenas-sec" id="resenas" hidden>
+  <div class="cont">
+    <div class="intro revela" style="margin-bottom:48px">
+      <p class="etiqueta">Reseñas</p>
+      <h2 class="titulo">Lo que dicen <em>en la silla</em></h2>
+    </div>
+    <div class="resenas" id="resenas-lista"></div>
+    <div class="acciones" style="margin-top:36px"><a class="btn btn-crema" data-mapa href="#" target="_blank" rel="noopener">Ver todas en Google</a></div>
+  </div>
+</section>
+
+<section class="cierre">
+  <div class="cont revela">
+    <p class="neon neon-azul">¿Ya toca?</p>
+    <p>Si ya te viste en el espejo y pensaste "ya toca", escríbenos. Nosotros te apartamos la silla.</p>
+    <a class="btn btn-wa" data-wa href="#turno"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2s.2-1.1.1-1.2l-.5-.3Z"/></svg>Agendar por WhatsApp</a>
+  </div>
+</section>
+
+<div class="poste-banda" aria-hidden="true"><span></span></div>
+<footer>
+  <div class="cont"><span class="neon">Decano</span><span>Barbería N.º 1207 · Calle Santo Tomé y Príncipe, Romanzza, Chihuahua · 614 537 2192</span></div>
+</footer>
+
+<nav class="barra" aria-label="Agendar rápido"><a class="btn btn-rojo" data-wa href="#turno">Agenda tu cita</a></nav>
+
+<style>
+/* ---------- WhatsApp-style booking chat ---------- */
+.chat{position:fixed;z-index:60;inset:0;display:flex;flex-direction:column;background:#0B141A;color:#E9EDEF;font:500 15px/1.4 var(--sans);
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  transform:translateY(24px) scale(.98);opacity:0;pointer-events:none;visibility:hidden;transition:transform .3s cubic-bezier(.2,.7,.2,1),opacity .25s,visibility 0s .3s}
+.chat.abierto{transform:none;opacity:1;pointer-events:auto;visibility:visible;transition:transform .3s cubic-bezier(.2,.7,.2,1),opacity .25s}
+@media (min-width:760px){
+  .chat{inset:auto calc(24px + env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) auto;width:400px;height:min(660px,calc(100vh - 110px));border-radius:18px;overflow:hidden;
+    box-shadow:0 30px 80px -20px rgba(0,0,0,.9),0 0 0 1px rgba(230,184,101,.22);transform-origin:100% 100%;padding:0}
+}
+.chat-cab{display:flex;align-items:center;gap:12px;padding:10px max(14px,env(safe-area-inset-right,0px)) 10px max(14px,env(safe-area-inset-left,0px));background:#202C33}
+.chat-cab .ava{width:42px;height:42px;border-radius:50%;flex:none;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#FFE7B5,#E6B865 45%,#8A5E20);font:400 24px/1 var(--firma);color:#2E1A06;padding-top:4px}
+.chat-cab .quien{flex:1;min-width:0;display:grid;gap:2px}
+.chat-cab b{font-weight:700;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chat-cab small{font-size:12.5px;color:#9FE3C4}
+.chat-cab button{background:none;border:0;color:#D6E0E5;width:40px;height:40px;border-radius:50%;cursor:pointer;display:grid;place-items:center}
+.chat-cab button:hover{background:rgba(255,255,255,.07)}
+.chat-cab svg{width:22px;height:22px}
+.chat-cuerpo{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:14px max(12px,env(safe-area-inset-right,0px)) 10px max(12px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:6px;
+  background-color:#0B141A;background-image:radial-gradient(rgba(255,255,255,.035) 1px,transparent 1px),radial-gradient(rgba(230,184,101,.05) 1px,transparent 1px);background-size:22px 22px,34px 34px;background-position:0 0,11px 17px}
+.chat-fecha{align-self:center;font-size:12px;color:#C9D3D8;background:#182229;padding:5px 12px;border-radius:8px;margin-block:4px 8px}
+.msj{max-width:84%;padding:7px 10px 6px;border-radius:10px;position:relative;word-wrap:break-word;white-space:pre-line;animation:msj .25s ease-out both}
+@keyframes msj{from{transform:translateY(6px);opacity:0}}
+.msj.bot{align-self:flex-start;background:#202C33;border-top-left-radius:3px}
+.msj.yo{align-self:flex-end;background:#005C4B;border-top-right-radius:3px}
+.msj .hora{display:inline-flex;gap:3px;align-items:center;float:right;margin:6px 0 -2px 10px;font-size:11px;color:rgba(233,237,239,.65)}
+.msj.yo .hora::after{content:"✓✓";color:#53BDEB;letter-spacing:-2px;font-size:11px}
+.msj a{color:#53BDEB}
+.escribiendo{align-self:flex-start;background:#202C33;border-radius:10px;padding:12px 14px;display:flex;gap:4px}
+.escribiendo i{width:7px;height:7px;border-radius:50%;background:#C9D3D8;animation:bote 1s infinite}
+.escribiendo i:nth-child(2){animation-delay:.15s}.escribiendo i:nth-child(3){animation-delay:.3s}
+@keyframes bote{30%{transform:translateY(-4px);opacity:1}0%,60%,100%{opacity:.5}}
+.opciones{display:flex;flex-wrap:wrap;gap:6px;align-self:flex-start;max-width:94%;margin-block:2px 6px}
+.opciones button{font:600 13.5px/1 var(--sans);color:#21D19F;background:#111B21;border:1px solid #2A3942;padding:10px 13px;border-radius:999px;cursor:pointer}
+.opciones button:hover{background:#182229;border-color:#00A884}
+.opciones button.listo{background:#00A884;color:#0B141A;border-color:#00A884}
+.ficha{align-self:flex-start;background:#202C33;border-radius:10px;padding:10px 12px;min-width:min(270px,86%);max-width:88%;display:grid;gap:8px}
+.ficha h4{margin:0;font:700 12.5px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:#21D19F}
+.ficha .fila{display:flex;justify-content:space-between;gap:12px;font-size:14px}
+.ficha .fila span:first-child{color:#C9D3D8}
+.enviar-wa{display:flex;align-items:center;justify-content:center;gap:8px;align-self:stretch;margin-top:4px;background:#00A884;color:#0B141A;font:800 14px/1 var(--sans);padding:13px;border-radius:999px;text-decoration:none}
+.enviar-wa svg{width:18px;height:18px}
+.chat-pie{display:flex;align-items:flex-end;gap:8px;padding:8px max(10px,env(safe-area-inset-right,0px)) 10px max(10px,env(safe-area-inset-left,0px));background:#0B141A}
+.chat-pie .caja{flex:1;display:flex;align-items:center;background:#202C33;border-radius:24px;padding:4px 6px 4px 14px;min-width:0}
+.chat-pie textarea{flex:1;min-width:0;background:transparent;border:0;color:#E9EDEF;font:500 16px/1.35 var(--sans);resize:none;max-height:110px;padding:8px 0;outline:none}
+.chat-pie textarea::placeholder{color:#AEBAC1}
+.chat-pie .mandar{width:46px;height:46px;flex:none;border-radius:50%;border:0;background:#00A884;color:#0B141A;cursor:pointer;display:grid;place-items:center}
+.chat-pie .mandar svg{width:20px;height:20px}
+.chat-aviso{font-size:11.5px;color:#C9D3D8;text-align:center;padding:0 16px 8px;background:#0B141A}
+</style>
+
+<div class="chat" id="chat" role="dialog" aria-modal="true" aria-labelledby="chat-titulo" aria-hidden="true">
+  <div class="chat-cab">
+    <button type="button" id="chat-volver" aria-label="Cerrar chat"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 11H7.8l5.6-5.6L12 4l-8 8 8 8 1.4-1.4L7.8 13H20z"/></svg></button>
+    <span class="ava" aria-hidden="true">D</span>
+    <span class="quien"><b id="chat-titulo">Decano Barbería 1207</b><small id="chat-estado">en línea</small></span>
+    <button type="button" id="chat-reiniciar" aria-label="Empezar de nuevo"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 5V2L7 6l5 4V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"/></svg></button>
+  </div>
+  <div class="chat-cuerpo" id="chat-cuerpo" aria-live="polite"></div>
+  <form class="chat-pie" id="chat-form">
+    <label class="caja"><textarea id="chat-texto" rows="1" placeholder="Escribe un mensaje" aria-label="Mensaje"></textarea></label>
+    <button class="mandar" type="submit" aria-label="Enviar"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg></button>
+  </form>
+  <div class="chat-aviso">Tu cita se manda al WhatsApp de la barbería. Aquí no se cobra nada.</div>
+</div>
+
+<script>
+/* Booking chat: a WhatsApp-style assistant that answers from the NEGOCIO block, builds the booking
+   (services, day, time, name), then opens WhatsApp with the whole message ready to send to the shop. */
+(function(){
+  var N = window.NEGOCIO, $ = function(i){ return document.getElementById(i); };
+  var chat = $('chat'), cuerpo = $('chat-cuerpo'), texto = $('chat-texto'), estado = $('chat-estado');
+  var esc = function(t){ var d = document.createElement('div'); d.textContent = t; return d.innerHTML; };
+  var waIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2s.2-1.1.1-1.2l-.5-.3Z"/></svg>';
+  var cita, esperando = null, iniciado = false, ultimoFoco = null, turno = 0;
+  function limpia(){ cita = {servicios: [], dia: '', hora: '', nombre: '', nota: ''}; }
+  limpia();
+
+  function hora(){ var d = new Date(); return d.getHours() + ':' + String(d.getMinutes()).padStart(2, '0'); }
+  function bajar(){ cuerpo.scrollTop = cuerpo.scrollHeight; }
+  function burbuja(html, quien){ var m = document.createElement('div'); m.className = 'msj ' + quien; m.innerHTML = html + '<span class="hora">' + hora() + '</span>'; cuerpo.appendChild(m); bajar(); return m; }
+  function quitarOpciones(){ cuerpo.querySelectorAll('.opciones').forEach(function(o){ o.remove(); }); }
+  function bot(mensajes, despues){
+    var lista = [].concat(mensajes), i = 0, mio = turno;
+    (function siguiente(){
+      if (mio !== turno) return;
+      if (i >= lista.length) { estado.textContent = 'en línea'; if (despues) despues(); return; }
+      var tip = document.createElement('div'); tip.className = 'escribiendo'; tip.innerHTML = '<i></i><i></i><i></i>'; cuerpo.appendChild(tip); bajar();
+      estado.textContent = 'escribiendo…';
+      setTimeout(function(){ tip.remove(); if (mio !== turno) return; burbuja(lista[i++], 'bot'); siguiente(); }, 450 + Math.min(lista[i].length * 5, 650));
+    })();
+  }
+  function opciones(lista){
+    quitarOpciones();
+    var o = document.createElement('div'); o.className = 'opciones';
+    lista.forEach(function(op){ var b = document.createElement('button'); b.type = 'button'; b.textContent = op[0]; if (op[2]) b.className = 'listo';
+      b.addEventListener('click', function(){ quitarOpciones(); burbuja(esc(op[0]), 'yo'); op[1](); }); o.appendChild(b); });
+    cuerpo.appendChild(o); bajar();
+  }
+  function principal(){
+    opciones([['Agendar una cita', agendar], ['Servicios', verServicios], ['Horarios', verHorario], ['¿Dónde están?', verUbicacion]]);
+  }
+  function verServicios(){
+    var conPrecio = N.servicios.some(function(s){ return s.precio; });
+    bot(['<b>Servicios</b>\n' + N.servicios.map(function(s){ return '• <b>' + esc(s.nombre) + '</b>' + (s.precio ? ' · ' + esc(s.precio) : '') + ': ' + esc(s.desc); }).join('\n'), conPrecio ? 'Toca "Agendar una cita" y te aparto tu lugar.' : 'Precios y tiempos te los confirmamos por WhatsApp al agendar.'], function(){
+      opciones([['Agendar una cita', agendar], ['Horarios', verHorario], ['¿Dónde están?', verUbicacion]]); });
+  }
+  function verHorario(){
+    bot(N.horario && N.horario.length ? '<b>Horario</b>\n' + N.horario.map(function(f){ return esc(f[0]) + ': ' + esc(f[1]); }).join('\n') + '\n\nTrabajamos con cita para que no esperes.' : 'Trabajamos con cita para que no esperes. Dime qué día te queda y te confirmamos el horario libre por WhatsApp.', function(){
+      opciones([['Agendar una cita', agendar], ['Servicios', verServicios], ['¿Dónde están?', verUbicacion]]); });
+  }
+  function verUbicacion(){
+    var d = N.direccion;
+    bot('<b>' + esc(N.completo) + '</b>\n' + esc(d.calle) + '\n' + esc(d.colonia) + '\n' + esc(d.ciudad) + '\n<a href="' + N.mapa + '" target="_blank" rel="noopener">Abrir en Google Maps</a>', function(){
+      opciones([['Agendar una cita', agendar], ['Servicios', verServicios]]); });
+  }
+  function agendar(){
+    bot(cita.servicios.length ? 'Ya tengo anotado: <b>' + esc(cita.servicios.join(' + ')) + '</b>. ¿Le agregamos algo más?' : '¡Va! ¿Qué te hacemos? Puedes elegir más de uno.', opcionesServicio);
+  }
+  function opcionesServicio(){
+    var ops = N.servicios.filter(function(s){ return cita.servicios.indexOf(s.nombre) < 0; }).map(function(s){ return [s.nombre, function(){ agregar(s.nombre); }]; });
+    if (cita.servicios.length) ops.push(['Es todo', pedirDia, true]);
+    opciones(ops);
+  }
+  function agregar(n){
+    if (cita.servicios.indexOf(n) < 0) cita.servicios.push(n);
+    if (cita.servicios.length === N.servicios.length) return bot('Anotado: <b>' + esc(cita.servicios.join(' + ')) + '</b>. El servicio completo.', pedirDia);
+    bot('Anotado: <b>' + esc(cita.servicios.join(' + ')) + '</b>. ¿Algo más?', opcionesServicio);
+  }
+  function pedirDia(){
+    bot('¿Qué día te queda?', function(){
+      opciones([['Hoy', function(){ elegirDia('Hoy'); }], ['Mañana', function(){ elegirDia('Mañana'); }], ['Este fin de semana', function(){ elegirDia('Este fin de semana'); }], ['Otro día', function(){ esperando = 'dia'; bot('Escríbeme el día que prefieras.'); enfocar(); }]]);
+    });
+  }
+  function elegirDia(d){ cita.dia = d; bot('¿Y a qué hora más o menos?', function(){
+    opciones([['En la mañana', function(){ elegirHora('En la mañana'); }], ['A mediodía', function(){ elegirHora('A mediodía'); }], ['En la tarde', function(){ elegirHora('En la tarde'); }], ['Lo antes posible', function(){ elegirHora('Lo antes posible'); }]]); }); }
+  function elegirHora(h){ cita.hora = h; esperando = 'nombre'; bot('Perfecto. ¿A nombre de quién apartamos la cita?'); enfocar(); }
+  function enfocar(){ setTimeout(function(){ texto.focus({preventScroll: true}); }, 900); }
+  function mensajeFinal(){
+    var l = [N.mensajeWhatsApp];
+    l.push('• Servicio: ' + cita.servicios.join(' + '));
+    if (cita.dia) l.push('• Día: ' + cita.dia);
+    if (cita.hora) l.push('• Hora: ' + cita.hora);
+    if (cita.nota) l.push('• Nota: ' + cita.nota);
+    if (cita.nombre) l.push('A nombre de: ' + cita.nombre);
+    return l.join('\n');
+  }
+  function cerrar_cita(textoLibre){
+    var msj = textoLibre || mensajeFinal();
+    var wa = 'https://wa.me/' + N.whatsapp + '?text=' + encodeURIComponent(msj);
+    bot(textoLibre ? 'Le paso tu mensaje a la barbería. Toca el botón y se abre WhatsApp con todo listo.' : '¡Listo, ' + esc(cita.nombre) + '! Toca el botón y se abre WhatsApp con tu cita lista para enviar.', function(){
+      var c = document.createElement('div'); c.className = 'ficha';
+      var filas = textoLibre ? '<div style="white-space:pre-line;font-size:14px">' + esc(msj) + '</div>' :
+        [['Servicio', cita.servicios.join(' + ')], ['Día', cita.dia], ['Hora', cita.hora], ['Nombre', cita.nombre]].concat(cita.nota ? [['Nota', cita.nota]] : [])
+          .map(function(f){ return '<div class="fila"><span>' + f[0] + '</span><b>' + esc(f[1]) + '</b></div>'; }).join('');
+      c.innerHTML = '<h4>Tu cita</h4>' + filas + '<a class="enviar-wa" href="' + wa + '" target="_blank" rel="noopener">' + waIcon + 'Abrir WhatsApp y enviar</a>';
+      cuerpo.appendChild(c); bajar();
+      opciones([['Agendar otra cita', reiniciar], ['¿Dónde están?', verUbicacion]]);
+    });
+  }
+
+  $('chat-form').addEventListener('submit', function(e){
+    e.preventDefault(); var t = texto.value.trim(); if (!t) return;
+    texto.value = ''; texto.style.height = ''; quitarOpciones(); burbuja(esc(t), 'yo');
+    if (esperando === 'nombre') { esperando = null; cita.nombre = t; return cerrar_cita(); }
+    if (esperando === 'dia') { esperando = null; return elegirDia(t); }
+    var l = t.toLowerCase();
+    if (/horario|hora|abren|cierran|abierto/.test(l)) return verHorario();
+    if (/d[oó]nde|ubicaci|direcci|mapa|llegar/.test(l)) return verUbicacion();
+    if (/servicio|precio|cu[aá]nto|cuesta|cobran/.test(l)) return verServicios();
+    var hallado = N.servicios.filter(function(s){ return l.indexOf(s.nombre.split(' ')[0].toLowerCase()) >= 0; });
+    if (hallado.length) { hallado.forEach(function(s){ if (cita.servicios.indexOf(s.nombre) < 0) cita.servicios.push(s.nombre); }); return bot('Anotado: <b>' + esc(cita.servicios.join(' + ')) + '</b>. ¿Algo más?', opcionesServicio); }
+    if (/cita|agendar|apartar|corte|cortar|turno|lugar/.test(l)) return agendar();
+    if (cita.servicios.length) { cita.nota = cita.nota ? cita.nota + ' ' + t : t; return bot('Lo agrego como nota a tu cita.', opcionesServicio); }
+    cerrar_cita(N.mensajeWhatsApp.replace(/:$/, '.') + '\n' + t);
+  });
+  texto.addEventListener('keydown', function(e){ if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); $('chat-form').requestSubmit(); } });
+  texto.addEventListener('input', function(){ texto.style.height = 'auto'; texto.style.height = Math.min(texto.scrollHeight, 110) + 'px'; });
+
+  function reiniciar(){ turno++; limpia(); esperando = null; cuerpo.innerHTML = ''; saludar(); }
+  function saludar(conServicio){
+    var f = document.createElement('div'); f.className = 'chat-fecha'; f.textContent = 'Hoy'; cuerpo.appendChild(f);
+    if (conServicio) { cita.servicios.push(conServicio); return bot(['¡Qué tal! Bienvenido a <b>' + esc(N.completo) + '</b>.', 'Te anoto: <b>' + esc(conServicio) + '</b>. ¿Le agregamos algo más?'], opcionesServicio); }
+    bot(['¡Qué tal! Bienvenido a <b>' + esc(N.completo) + '</b>.', '¿Te apartamos un lugar en la silla? Te ayudo a agendar en un minuto.'], principal);
+  }
+  function abrir(servicio){
+    ultimoFoco = document.activeElement;
+    chat.classList.add('abierto'); chat.setAttribute('aria-hidden', 'false');
+    if (!iniciado) { iniciado = true; saludar(servicio); }
+    else if (servicio && cita.servicios.indexOf(servicio) < 0) { quitarOpciones(); burbuja('Quiero ' + esc(servicio.toLowerCase()), 'yo'); agregar(servicio); }
+    setTimeout(function(){ if (matchMedia('(hover: hover)').matches) texto.focus({preventScroll: true}); }, 320);
+  }
+  function cerrar(){ chat.classList.remove('abierto'); chat.setAttribute('aria-hidden', 'true'); if (ultimoFoco && ultimoFoco.focus) ultimoFoco.focus({preventScroll: true}); }
+  $('chat-volver').addEventListener('click', cerrar);
+  $('chat-reiniciar').addEventListener('click', reiniciar);
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && chat.classList.contains('abierto')) cerrar(); });
+  /* every WhatsApp button and each service's "Agendar" opens the chat; a spun coin does not */
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('[data-wa], [data-servicio]'); if (!a || e.defaultPrevented) return;
+    e.preventDefault(); abrir(a.dataset.servicio);
+  });
+  window.abrirCita = abrir;
+})();
+</script>
+
+<script>
+/* Letter board rows, map links. */
+(function(){
+  var N = window.NEGOCIO;
+  var esc = function(t){ var d = document.createElement('div'); d.textContent = t; return d.innerHTML; };
+  var flecha = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  /* plastic letters never sit perfectly straight: each row gets a tiny random tilt and nudge */
+  function torcido(){ return 'transform:rotate(' + (Math.random() * 1.4 - .7).toFixed(2) + 'deg) translateX(' + (Math.random() * 4 - 2).toFixed(1) + 'px)'; }
+  document.getElementById('tablero-lista').innerHTML =
+    '<div class="cab" style="' + torcido() + '">— Servicios de la casa —</div>' +
+    N.servicios.map(function(s){
+      return '<button type="button" class="fila" data-servicio="' + esc(s.nombre) + '" aria-label="Agendar ' + esc(s.nombre) + '"><span class="nombre" style="' + torcido() + '">' + esc(s.nombre) + '</span><span class="puntos"></span><span class="accion">' + (s.precio ? esc(s.precio) : 'Agendar') + flecha + '</span></button>' +
+        '<p class="desc" style="' + torcido() + '">' + esc(s.desc) + '</p>';
+    }).join('') +
+    '<div class="pie" style="' + torcido() + '">' + (N.servicios.some(function(s){ return s.precio; }) ? 'Toca un servicio para agendar' : 'Precios y tiempos por WhatsApp') + '</div>';
+  /* hours and reviews only appear once the owner's real data is filled in */
+  if (N.horario && N.horario.length) {
+    var h = document.getElementById('horario'); h.hidden = false; document.getElementById('sin-horario').hidden = true;
+    h.innerHTML = N.horario.map(function(f){ return '<div><span>' + esc(f[0]) + '</span><b>' + esc(f[1]) + '</b></div>'; }).join('');
+  }
+  if (N.resenas && N.resenas.length) {
+    document.getElementById('resenas').hidden = false;
+    document.getElementById('resenas-lista').innerHTML = N.resenas.map(function(r){
+      var n = Math.max(1, Math.min(5, r.estrellas || 5));
+      return '<figure class="resena" style="margin:0"><div class="estrellas" aria-label="' + n + ' de 5 estrellas">' + '★★★★★'.slice(0, n) + '</div><p>“' + esc(r.texto) + '”</p><b>' + esc(r.autor) + '</b></figure>';
+    }).join('');
+  }
+  document.querySelectorAll('[data-mapa]').forEach(function(a){ a.href = N.mapa; });
+})();
+</script>
+
+<script>
+/* The letter board leans toward the pointer, like a sign hanging from one nail. */
+(function(){
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || !matchMedia('(hover: hover)').matches) return;
+  var t = document.getElementById('tablero');
+  t.addEventListener('pointermove', function(e){ var r = t.getBoundingClientRect(), u = (e.clientX - r.left) / r.width - .5, v = (e.clientY - r.top) / r.height - .5;
+    t.style.setProperty('--ty', (u * 8).toFixed(2) + 'deg'); t.style.setProperty('--tx', (-v * 6).toFixed(2) + 'deg'); });
+  t.addEventListener('pointerleave', function(){ t.style.setProperty('--ty', '0deg'); t.style.setProperty('--tx', '0deg'); });
+})();
+</script>
+
+<script>
+/* "Pásale la máquina": a client with long hair and beard; dragging the golden clipper shaves it off,
+   clippings fall, and a meter shows how clean the cut is. Plain 2D canvas, three layers. */
+(function(){
+  var caja = document.getElementById('juego-lienzo'), base = document.getElementById('j-base'), pelo = document.getElementById('j-pelo'), migas = document.getElementById('j-migas');
+  var maq = document.getElementById('maquinilla'), pctEl = document.getElementById('pct'), relleno = document.getElementById('relleno'), logro = document.getElementById('logro');
+  var reducido = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var S, u, dpr, bx, px, mx, inicial = 1, abajo = false, ult = null, caidas = [], animando = false, ganado = false;
+  var semilla; function rnd(){ semilla = (semilla * 16807) % 2147483647; return semilla / 2147483647; }
+
+  function medir(){
+    dpr = Math.min(devicePixelRatio || 1, 2); S = caja.clientWidth; u = S / 100;
+    [base, pelo, migas].forEach(function(c){ c.width = S * dpr; c.height = S * dpr; });
+    bx = base.getContext('2d'); px = pelo.getContext('2d'); mx = migas.getContext('2d');
+    [bx, px, mx].forEach(function(x){ x.setTransform(dpr, 0, 0, dpr, 0, 0); });
+    dibujarBase(); dibujarPelo();
+  }
+  function elipse(x, cx, cy, rx, ry){ x.beginPath(); x.ellipse(cx*u, cy*u, rx*u, ry*u, 0, 0, 6.2832); }
+  function dentro(px_, py_, cx, cy, rx, ry){ var a = (px_ - cx) / rx, b = (py_ - cy) / ry; return a*a + b*b <= 1; }
+
+  function dibujarBase(){
+    var x = bx; x.clearRect(0, 0, S, S);
+    /* spotlight disc */
+    var g = x.createRadialGradient(50*u, 40*u, 4*u, 50*u, 50*u, 52*u); g.addColorStop(0, '#2A3A70'); g.addColorStop(1, '#0B1128'); x.fillStyle = g; x.fillRect(0, 0, S, S);
+    /* barber cape with pinstripes */
+    x.save(); x.beginPath(); x.moveTo(2*u, 100*u); x.quadraticCurveTo(14*u, 76*u, 36*u, 73*u); x.lineTo(64*u, 73*u); x.quadraticCurveTo(86*u, 76*u, 98*u, 100*u); x.closePath();
+    x.fillStyle = '#F6EAD3'; x.fill(); x.clip();
+    x.strokeStyle = 'rgba(227,38,59,.55)'; x.lineWidth = .8*u; for (var i = -10; i < 30; i++){ x.beginPath(); x.moveTo(i*5*u, 100*u); x.lineTo(i*5*u + 30*u, 70*u); x.stroke(); }
+    x.restore();
+    x.fillStyle = '#E3263B'; x.beginPath(); x.ellipse(50*u, 74*u, 15*u, 3.2*u, 0, 0, 6.2832); x.fill();
+    /* neck */
+    x.fillStyle = '#C98B62'; x.fillRect(42*u, 60*u, 16*u, 14*u);
+    /* ears */
+    x.fillStyle = '#D99C72'; elipse(x, 27, 47, 4, 7); x.fill(); elipse(x, 73, 47, 4, 7); x.fill();
+    /* head */
+    var c = x.createRadialGradient(44*u, 38*u, 4*u, 50*u, 46*u, 32*u); c.addColorStop(0, '#F0BE93'); c.addColorStop(1, '#C98760');
+    x.fillStyle = c; elipse(x, 50, 45, 23, 29); x.fill();
+    /* what a fresh cut leaves behind: a soft fade on the scalp, light stubble on the jaw */
+    x.save(); elipse(x, 50, 45, 23, 29); x.clip();
+    var f = x.createLinearGradient(0, 14*u, 0, 44*u); f.addColorStop(0, 'rgba(40,24,14,.6)'); f.addColorStop(1, 'rgba(40,24,14,0)'); x.fillStyle = f; x.fillRect(0, 0, S, 44*u);
+    semilla = 99; x.fillStyle = 'rgba(50,30,18,.35)';
+    for (var k = 0; k < 900; k++){ var sx = 26 + rnd()*48, sy = 52 + rnd()*24; if (dentro(sx, sy, 50, 58, 24, 19) && !dentro(sx, sy, 50, 62.5, 6, 2.6)) x.fillRect(sx*u, sy*u, .35*u, .35*u); }
+    x.restore();
+    /* face */
+    x.strokeStyle = '#3B2416'; x.lineCap = 'round';
+    x.lineWidth = 1.6*u; x.beginPath(); x.moveTo(36*u, 41*u); x.quadraticCurveTo(41*u, 38.5*u, 46*u, 40.5*u); x.moveTo(54*u, 40.5*u); x.quadraticCurveTo(59*u, 38.5*u, 64*u, 41*u); x.stroke();
+    x.lineWidth = .9*u; x.beginPath(); x.moveTo(37.5*u, 47*u); x.quadraticCurveTo(41*u, 49.5*u, 44.5*u, 47*u); x.moveTo(55.5*u, 47*u); x.quadraticCurveTo(59*u, 49.5*u, 62.5*u, 47*u); x.stroke();
+    x.strokeStyle = '#A9663F'; x.beginPath(); x.moveTo(50*u, 47*u); x.quadraticCurveTo(52.5*u, 54*u, 49*u, 55.5*u); x.stroke();
+    x.strokeStyle = '#7A3A26'; x.lineWidth = 1*u; x.beginPath(); x.moveTo(44.5*u, 62*u); x.quadraticCurveTo(50*u, 65.5*u, 55.5*u, 62*u); x.stroke();
+    x.fillStyle = 'rgba(227,90,90,.18)'; elipse(x, 37, 54, 4, 2.4); x.fill(); elipse(x, 63, 54, 4, 2.4); x.fill();
+  }
+  function trazos(n, zona, angulo, largo, ancho, tonos){
+    for (var i = 0; i < n; i++){
+      var sx = rnd()*100, sy = rnd()*100; if (!zona(sx, sy)) continue;
+      var a = angulo(sx, sy) + (rnd() - .5) * .5, l = largo[0] + rnd() * largo[1];
+      px.strokeStyle = tonos[Math.floor(rnd() * tonos.length)]; px.lineWidth = (ancho[0] + rnd() * ancho[1]) * u;
+      px.beginPath(); px.moveTo(sx*u, sy*u); px.quadraticCurveTo((sx + Math.cos(a)*l*.5 + (rnd()-.5))*u, (sy + Math.sin(a)*l*.5)*u, (sx + Math.cos(a)*l)*u, (sy + Math.sin(a)*l)*u); px.stroke();
+    }
+  }
+  function dibujarPelo(){
+    px.globalCompositeOperation = 'source-over'; px.clearRect(0, 0, S, S); px.lineCap = 'round'; semilla = 7;
+    var tonos = ['#2A170D', '#3B2214', '#4C2D1A', '#1E110A', '#6A4326'];
+    function ruta(dibuja){ var r = new Path2D(); dibuja(r, function(v){ return v * u; }); return r; }
+    /* a clean cartoon pompadour with sideburns */
+    var copete = ruta(function(r, k){
+      r.moveTo(k(26), k(46)); r.lineTo(k(26.4), k(34)); r.bezierCurveTo(k(24), k(18), k(34), k(5), k(52), k(6));
+      r.bezierCurveTo(k(68), k(7), k(77), k(18), k(73.6), k(34)); r.lineTo(k(74), k(46)); r.lineTo(k(70.6), k(46)); r.lineTo(k(70.4), k(36));
+      r.bezierCurveTo(k(64), k(30), k(56), k(27.5), k(50), k(28.5)); r.bezierCurveTo(k(44), k(27.5), k(36), k(30), k(29.6), k(36)); r.lineTo(k(29.4), k(46)); r.closePath(); });
+    /* a full beard joined to the sideburns, with the moustache and an opening for the mouth */
+    var barba = ruta(function(r, k){
+      r.moveTo(k(26.6), k(46)); r.bezierCurveTo(k(27), k(63), k(36), k(80), k(50), k(80.5)); r.bezierCurveTo(k(64), k(80), k(73), k(63), k(73.4), k(46));
+      r.lineTo(k(70.2), k(46)); r.bezierCurveTo(k(69.5), k(54), k(65), k(56), k(60.5), k(57.5)); r.bezierCurveTo(k(56), k(55), k(44), k(55), k(39.5), k(57.5));
+      r.bezierCurveTo(k(35), k(56), k(30.5), k(54), k(29.8), k(46)); r.closePath();
+      r.moveTo(k(55.4), k(63.2)); r.ellipse(k(50), k(63.2), k(5.4), k(1.9), 0, 0, 6.2832); });
+    function rellena(path, y0, y1){ var g = px.createLinearGradient(0, y0*u, 0, y1*u); g.addColorStop(0, '#5A3820'); g.addColorStop(.5, '#3B2214'); g.addColorStop(1, '#24140B'); px.fillStyle = g; px.fill(path, 'evenodd'); }
+    rellena(copete, 6, 46); rellena(barba, 46, 80);
+    /* strands on top for texture; they start inside the shape and may stick out a little, like real hair */
+    function hebras(path, n, angulo, largo){
+      for (var i = 0; i < n; i++){ var sx = rnd()*100, sy = rnd()*100; if (!px.isPointInPath(path, sx*u*dpr, sy*u*dpr, 'evenodd')) continue;
+        var a = angulo(sx, sy) + (rnd() - .5) * .35, l = largo[0] + rnd() * largo[1];
+        px.strokeStyle = tonos[Math.floor(rnd() * tonos.length)]; px.lineWidth = (.35 + rnd() * .35) * u;
+        px.beginPath(); px.moveTo(sx*u, sy*u); px.quadraticCurveTo((sx + Math.cos(a)*l*.5)*u, (sy + Math.sin(a)*l*.5 - .4)*u, (sx + Math.cos(a)*l)*u, (sy + Math.sin(a)*l)*u); px.stroke(); }
+    }
+    hebras(copete, 5200, function(x, y){ return -Math.PI/2 + (x - 50) / 22 + (y > 30 ? Math.PI : 0); }, [2.2, 2.6]);
+    hebras(barba, 5200, function(x){ return Math.PI/2 + (50 - x) / 34; }, [1.8, 2.2]);
+    /* a soft shine on the pompadour */
+    px.save(); px.clip(copete); var b = px.createRadialGradient(42*u, 14*u, 0, 42*u, 14*u, 14*u); b.addColorStop(0, 'rgba(255,214,160,.28)'); b.addColorStop(1, 'rgba(255,214,160,0)'); px.fillStyle = b; px.fillRect(0, 0, S, S); px.restore();
+    inicial = contar() || 1; ganado = false; actualizar(0);
+  }
+  /* coverage: sample the hair layer on a coarse grid */
+  function contar(){
+    var d = px.getImageData(0, 0, pelo.width, pelo.height).data, paso = Math.max(4, Math.round(pelo.width / 120)), n = 0;
+    for (var y = 0; y < pelo.height; y += paso) for (var x = 0; x < pelo.width; x += paso) if (d[(y * pelo.width + x) * 4 + 3] > 60) n++;
+    return n;
+  }
+  function actualizar(p){
+    var v = Math.round(Math.min(1, p / .9) * 100);
+    pctEl.textContent = v + '%'; relleno.style.width = v + '%';
+    if (v >= 100 && !ganado) { ganado = true; logro.hidden = false; }
+    if (v < 100) logro.hidden = true;
+  }
+  var pendiente = null;
+  function revisar(){ if (pendiente) return; pendiente = setTimeout(function(){ pendiente = null; actualizar(1 - contar() / inicial); }, 180); }
+
+  function punto(e){ var r = caja.getBoundingClientRect(); return {x: e.clientX - r.left, y: e.clientY - r.top}; }
+  function moverMaq(p){ maq.style.transform = 'translate(' + (p.x - 38) + 'px,' + (p.y - 8) + 'px)'; }
+  function cortar(p){
+    px.globalCompositeOperation = 'destination-out'; px.lineCap = 'round'; px.lineWidth = 7.5*u;
+    px.beginPath(); px.moveTo((ult || p).x, (ult || p).y); px.lineTo(p.x, p.y); px.stroke();
+    if (!reducido) for (var i = 0; i < 3; i++) caidas.push({x: p.x + (Math.random() - .5) * 6*u, y: p.y, vx: (Math.random() - .5) * 1.2, vy: Math.random() * -1, a: Math.random() * 6.28, va: (Math.random() - .5) * .3, c: ['#2A170D', '#4C2D1A', '#3B2214'][i]});
+    if (!animando && caidas.length) { animando = true; requestAnimationFrame(caer); }
+    ult = p; revisar();
+  }
+  function caer(){
+    mx.clearRect(0, 0, S, S); mx.lineCap = 'round'; mx.lineWidth = .45*u;
+    caidas = caidas.filter(function(m){ m.vy += .18; m.x += m.vx; m.y += m.vy; m.a += m.va; if (m.y > S) return false;
+      mx.strokeStyle = m.c; mx.beginPath(); mx.moveTo(m.x, m.y); mx.lineTo(m.x + Math.cos(m.a) * 2.6*u, m.y + Math.sin(m.a) * 2.6*u); mx.stroke(); return true; });
+    if (caidas.length > 400) caidas.splice(0, caidas.length - 400);
+    if (caidas.length) requestAnimationFrame(caer); else animando = false;
+  }
+  caja.addEventListener('pointerenter', function(e){ caja.classList.add('encima'); moverMaq(punto(e)); });
+  caja.addEventListener('pointerleave', function(){ caja.classList.remove('encima', 'cortando'); abajo = false; ult = null; });
+  caja.addEventListener('mousedown', function(e){ e.preventDefault(); });
+  caja.addEventListener('pointerdown', function(e){ e.preventDefault(); abajo = true; ult = null; caja.classList.add('cortando', 'usado', 'encima'); try { caja.setPointerCapture(e.pointerId); } catch(_){} var p = punto(e); moverMaq(p); cortar(p); });
+  caja.addEventListener('pointermove', function(e){ var p = punto(e); moverMaq(p); if (abajo) cortar(p); });
+  function soltar(e){ abajo = false; ult = null; caja.classList.remove('cortando'); if (e.pointerType !== 'mouse') caja.classList.remove('encima'); }
+  caja.addEventListener('pointerup', soltar); caja.addEventListener('pointercancel', soltar);
+  document.getElementById('otra-vez').addEventListener('click', function(){ dibujarPelo(); caja.classList.remove('usado'); });
+  medir();
+  var ancho = caja.clientWidth; addEventListener('resize', function(){ if (Math.abs(caja.clientWidth - ancho) > 2) { ancho = caja.clientWidth; medir(); } });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ if (Math.abs(caja.clientWidth - S) > 2) medir(); });
+})();
+</script>
+
+<script>
+/* Ticket dispenser: drag the ticket down (or tap it) and it tears off and opens the booking chat. */
+(function(){
+  var b = document.getElementById('boleto'), y0 = null, dy = 0, movido = 0;
+  function arrancar(){
+    b.classList.remove('arrastrando'); b.style.setProperty('--tirar', '0px'); b.classList.add('fuera');
+    setTimeout(function(){ b.classList.add('arrancado'); if (window.abrirCita) window.abrirCita(); }, 450);
+    setTimeout(function(){ b.classList.remove('fuera', 'arrancado'); }, 1600);
+  }
+  b.addEventListener('pointerdown', function(e){ y0 = e.clientY; dy = 0; movido = 0; b.classList.add('arrastrando'); try { b.setPointerCapture(e.pointerId); } catch(_){} });
+  b.addEventListener('pointermove', function(e){ if (y0 === null) return; dy = Math.max(0, Math.min(140, e.clientY - y0)); movido = Math.max(movido, Math.abs(e.clientY - y0)); b.style.setProperty('--tirar', dy + 'px'); });
+  function soltar(){ if (y0 === null) return; y0 = null;
+    if (dy > 60 || movido < 6) arrancar(); else { b.classList.remove('arrastrando'); b.style.setProperty('--tirar', '0px'); } }
+  b.addEventListener('pointerup', soltar); b.addEventListener('pointercancel', function(){ y0 = null; b.classList.remove('arrastrando'); b.style.setProperty('--tirar', '0px'); });
+  b.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); arrancar(); } });
+  b.addEventListener('click', function(e){ e.preventDefault(); });
+  b.addEventListener('mousedown', function(e){ e.preventDefault(); });
+})();
+</script>
+
+<script>
+/* The pinned phone button steps aside while the closing section (with its own button) is on screen. */
+(function(){ var b = document.querySelector('.barra'), c = document.querySelector('.cierre'); if (!b || !c || !('IntersectionObserver' in window)) return;
+  new IntersectionObserver(function(e){ b.classList.toggle('oculta', e[0].isIntersecting); }, {threshold: .25}).observe(c); })();
+</script>
+
+<script>
+/* 3D: a classic barber chair (red tuck-and-roll leather, chrome) under a spotlight on a checkered floor, with hair clippings
+   drifting through the beam. It turns on its own, spins when you drag it like a real chair, and pumps up as you scroll.
+   Skipped with reduced motion, data saver, 2G, very low memory or no WebGL, and dropped if it lags: the drawing stays. */
+(function(){
+  var con = navigator.connection || {};
+  var reducido = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var gl = (function(){ try { var t = document.createElement('canvas'); return !!(t.getContext('webgl') || t.getContext('experimental-webgl')); } catch(e){ return false; } })();
+  if (reducido || con.saveData || /2g/.test(con.effectiveType || '') || (navigator.deviceMemory && navigator.deviceMemory < 2) || !gl) return;
+  var s = document.createElement('script');
+  s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+  s.onload = function(){ if (window.THREE) escena(window.THREE); };
+  document.head.appendChild(s);
+
+  function rnd(a, b){ return a + Math.random() * (b - a); }
+  function perfil(T, pts){ return pts.map(function(p){ return new T.Vector2(p[0], p[1]); }); }
+  function redondo(T, w, h, r){ var s = new T.Shape(), x = -w/2, y = -h/2;
+    s.moveTo(x + r, y); s.lineTo(x + w - r, y); s.quadraticCurveTo(x + w, y, x + w, y + r); s.lineTo(x + w, y + h - r); s.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    s.lineTo(x + r, y + h); s.quadraticCurveTo(x, y + h, x, y + h - r); s.lineTo(x, y + r); s.quadraticCurveTo(x, y, x + r, y); return s; }
+  function bloque(T, w, h, prof, r, bisel, m){ var g = new T.ExtrudeGeometry(redondo(T, w, h, r), {depth: prof, bevelEnabled: true, bevelThickness: bisel, bevelSize: bisel, bevelSegments: 4, curveSegments: 10}); g.center(); return new T.Mesh(g, m); }
+  function tubo(T, pts, r, m){ return new T.Mesh(new T.TubeGeometry(new T.CatmullRomCurve3(pts.map(function(p){ return new T.Vector3(p[0], p[1], p[2]); })), 40, r, 10), m); }
+  function entorno(T, r){
+    var pm = new T.PMREMGenerator(r), sc = new T.Scene();
+    var c = document.createElement('canvas'); c.width = 8; c.height = 256; var x = c.getContext('2d'); var g = x.createLinearGradient(0, 0, 0, 256);
+    g.addColorStop(0, '#ffffff'); g.addColorStop(.3, '#c9cfe0'); g.addColorStop(.5, '#2a3560'); g.addColorStop(.56, '#121a36'); g.addColorStop(1, '#05070f'); x.fillStyle = g; x.fillRect(0, 0, 8, 256);
+    sc.add(new T.Mesh(new T.SphereGeometry(20, 32, 16), new T.MeshBasicMaterial({map: new T.CanvasTexture(c), side: T.BackSide})));
+    [[0xffffff, -6, 6, 5, 6, 6], [0xfff2dc, 7, 3, 3, 3, 9], [0xff3b55, -8, 1, -5, 3, 7], [0x3d8bff, 8, 1, -5, 3, 7]].forEach(function(p){
+      var m = new T.Mesh(new T.PlaneGeometry(p[4], p[5]), new T.MeshBasicMaterial({color: p[0], side: T.DoubleSide})); m.position.set(p[1], p[2], p[3]); m.lookAt(0, 0, 0); sc.add(m); });
+    var tex = pm.fromScene(sc, .03).texture; pm.dispose(); return tex;
+  }
+  function lienzo(n, pintar){ var c = document.createElement('canvas'); c.width = c.height = n; pintar(c.getContext('2d'), n); return c; }
+
+  function sillon(T){
+    var cromo = new T.MeshStandardMaterial({color: 0xffffff, metalness: 1, roughness: .16});
+    var piel = new T.MeshPhysicalMaterial({color: 0x5E0610, roughness: .62, clearcoat: .25, clearcoatRoughness: .4, envMapIntensity: .15});
+    var pielH = new T.MeshPhysicalMaterial({color: 0x48040C, roughness: .66, clearcoat: .2, clearcoatRoughness: .45, envMapIntensity: .15});
+    var negro = new T.MeshPhysicalMaterial({color: 0x101014, roughness: .4, clearcoat: .6});
+    var g = new T.Group();
+    g.add(new T.Mesh(new T.LatheGeometry(perfil(T, [[0,0],[.82,0],[.84,.03],[.8,.08],[.52,.13],[.22,.18],[0,.19]]), 64), cromo));
+    var col = new T.Mesh(new T.CylinderGeometry(.13, .15, 1, 32), cromo); col.position.y = .19 + .35; col.scale.y = .7; g.add(col);
+    var pedal = new T.Group(); var brazo = new T.Mesh(new T.BoxGeometry(.5, .04, .06), cromo); brazo.position.x = .25; pedal.add(brazo);
+    var pie = bloque(T, .22, .12, .04, .03, .01, negro); pie.rotation.x = -Math.PI/2; pie.position.set(.52, .02, 0); pedal.add(pie);
+    pedal.position.set(.1, .14, 0); pedal.rotation.y = -.7; g.add(pedal);
+
+    var arriba = new T.Group(); arriba.position.y = .89; g.add(arriba);
+    var caja = new T.Mesh(new T.CylinderGeometry(.4, .34, .16, 48), cromo); caja.position.y = .08; arriba.add(caja);
+    var marco = bloque(T, 1.2, 1.05, .05, .2, .02, cromo); marco.rotation.x = -Math.PI/2; marco.position.y = .19; arriba.add(marco);
+    /* tuck-and-roll seat: five padded channels */
+    for (var i = 0; i < 5; i++){ var c = bloque(T, .17, .92, .16, .08, .05, i % 2 ? pielH : piel); c.rotation.x = -Math.PI/2; c.position.set(-.42 + i * .21, .33, .02); arriba.add(c); }
+    var frente = bloque(T, 1.1, .2, .14, .08, .04, piel); frente.position.set(0, .3, .52); arriba.add(frente);
+    /* backrest */
+    var resp = new T.Group(); resp.position.set(0, .3, -.5); resp.rotation.x = -.22; arriba.add(resp);
+    for (var j = 0; j < 5; j++){ var b = bloque(T, .17, 1.15, .14, .08, .05, j % 2 ? pielH : piel); b.position.set(-.42 + j * .21, .68, .06); resp.add(b); }
+    var tapa = bloque(T, 1.12, 1.24, .05, .14, .02, negro); tapa.position.set(0, .68, -.06); resp.add(tapa);
+    var borde = redondo(T, 1.16, 1.28, .16).getPoints(12).map(function(p){ return [p.x, p.y + .68, -.02]; }); borde.pop();
+    var aro = new T.Mesh(new T.TubeGeometry(new T.CatmullRomCurve3(borde.map(function(p){ return new T.Vector3(p[0], p[1], p[2]); }), true), 120, .028, 8, true), cromo); resp.add(aro);
+    var vastago = new T.Mesh(new T.CylinderGeometry(.03, .03, .26, 16), cromo); vastago.position.set(0, 1.4, -.03); resp.add(vastago);
+    var cabecera = bloque(T, .62, .22, .14, .1, .05, piel); cabecera.position.set(0, 1.56, .02); resp.add(cabecera);
+    /* armrests */
+    [-1, 1].forEach(function(l){
+      var x = l * .66;
+      arriba.add(tubo(T, [[x, .2, .38], [x, .44, .42], [x, .56, .2], [x, .56, -.3], [x, .4, -.45]], .032, cromo));
+      var almohada = bloque(T, .14, .82, .1, .06, .04, piel); almohada.rotation.x = -Math.PI/2; almohada.position.set(x, .64, -.04); arriba.add(almohada);
+    });
+    /* footrest */
+    arriba.add(tubo(T, [[0, .2, .45], [0, -.05, .62], [0, -.38, .74]], .035, cromo));
+    var placa = bloque(T, .78, .3, .03, .06, .01, cromo); placa.rotation.x = -Math.PI/2 + .2; placa.position.set(0, -.42, .82); arriba.add(placa);
+    for (var k = 0; k < 6; k++){ var r = new T.Mesh(new T.BoxGeometry(.7, .012, .015), negro); r.position.set(0, -.395 + k * .009, .7 + k * .045); r.rotation.x = .2; arriba.add(r); }
+    /* side lever */
+    arriba.add(tubo(T, [[.42, .12, -.12], [.6, .3, -.16], [.72, .55, -.2]], .018, cromo));
+    var perilla = new T.Mesh(new T.SphereGeometry(.06, 20, 14), negro); perilla.position.set(.72, .58, -.2); arriba.add(perilla);
+    g.traverse(function(o){ if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+    return {g: g, arriba: arriba, col: col};
+  }
+
+  function escena(T){
+    var caja = document.getElementById('escena'), cv = document.getElementById('lienzo'); if (!caja) return;
+    var r = new T.WebGLRenderer({canvas: cv, antialias: true, alpha: true, powerPreference: 'low-power'});
+    r.setPixelRatio(Math.min(devicePixelRatio || 1, 1.75)); r.outputEncoding = T.sRGBEncoding; r.toneMapping = T.ACESFilmicToneMapping; r.toneMappingExposure = .95;
+    r.shadowMap.enabled = true; r.shadowMap.type = T.PCFSoftShadowMap;
+    var esc = new T.Scene(), cam = new T.PerspectiveCamera(30, 1, .1, 60);
+    esc.environment = entorno(T, r);
+    esc.add(new T.HemisphereLight(0x8fa0d0, 0x0a0c18, .3));
+    var foco = new T.SpotLight(0xffe4c0, 1.6, 14, .42, .55, 1); foco.position.set(.4, 6.5, 1.6); foco.target.position.set(0, .6, 0);
+    foco.castShadow = true; foco.shadow.mapSize.set(1024, 1024); foco.shadow.bias = -.0004; foco.shadow.radius = 4; esc.add(foco, foco.target);
+    var rojo = new T.PointLight(0xff3b55, 1.3, 9); rojo.position.set(-3, 1.8, -1.5); esc.add(rojo);
+    var azul = new T.PointLight(0x3d8bff, 1.2, 9); azul.position.set(3, 1.6, -1.8); esc.add(azul);
+
+    /* checkered floor laid on the diagonal, fading into the dark */
+    var ajedrez = new T.CanvasTexture(lienzo(512, function(x, n){ var t = n / 16; for (var i = 0; i < 16; i++) for (var j = 0; j < 16; j++){ x.fillStyle = (i + j) % 2 ? '#111216' : '#EFE6D4'; x.fillRect(i*t, j*t, t, t); } }));
+    ajedrez.encoding = T.sRGBEncoding; ajedrez.anisotropy = 4;
+    var desvan = new T.CanvasTexture(lienzo(256, function(x, n){ var g = x.createRadialGradient(n/2, n/2, 0, n/2, n/2, n/2); g.addColorStop(0, '#fff'); g.addColorStop(.55, '#bbb'); g.addColorStop(1, '#000'); x.fillStyle = g; x.fillRect(0, 0, n, n); }));
+    var piso = new T.Mesh(new T.CircleGeometry(3.4, 72), new T.MeshStandardMaterial({map: ajedrez, alphaMap: desvan, transparent: true, roughness: .28, metalness: 0, envMapIntensity: .6}));
+    piso.rotation.x = -Math.PI/2; piso.rotation.z = Math.PI/4; piso.receiveShadow = true; esc.add(piso);
+
+    var s = sillon(T); esc.add(s.g);
+    /* the beam itself, and hair clippings drifting through it */
+    var haz = new T.Mesh(new T.ConeGeometry(1.7, 6.2, 48, 1, true), new T.MeshBasicMaterial({color: 0xfff0d0, transparent: true, opacity: .035, blending: T.AdditiveBlending, depthWrite: false, side: T.DoubleSide}));
+    haz.position.set(.2, 3.2, .7); haz.rotation.x = -.18; esc.add(haz);
+    var pelos = [], mp = new T.MeshStandardMaterial({color: 0x2a170d, roughness: .8});
+    for (var i = 0; i < 46; i++){ var p = new T.Mesh(new T.BoxGeometry(.07, .006, .006), mp); p.userData = {x: rnd(-1.2, 1.2), z: rnd(-.8, 1.4), y: rnd(0, 4), v: rnd(.004, .009), f: rnd(0, 6)}; esc.add(p); pelos.push(p); }
+
+    var giro = -.5, vel = .004, arr = null, mx = 0, my = 0;
+    caja.addEventListener('pointerdown', function(e){ arr = e.clientX; caja.style.cursor = 'grabbing'; });
+    addEventListener('pointerup', function(){ arr = null; caja.style.cursor = ''; });
+    addEventListener('pointercancel', function(){ arr = null; caja.style.cursor = ''; });
+    addEventListener('pointermove', function(e){ mx = e.clientX / innerWidth - .5; my = e.clientY / innerHeight - .5; if (arr === null) return; var d = e.clientX - arr; arr = e.clientX; vel = d * .0016; giro += d * .013; });
+    function medir(){ var w = caja.clientWidth, h = caja.clientHeight; r.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix(); }
+    medir(); addEventListener('resize', medir);
+    bucle(caja, function(t){
+      if (arr === null) { vel += (.004 - vel) * .02; giro += vel; }   /* a hard flick keeps it spinning, then it eases back */
+      var sp = Math.min(Math.max(scrollY, 0) / Math.max(caja.offsetTop + caja.offsetHeight, 1), 1);
+      s.g.rotation.y = giro;
+      var bomba = sp * .32 + Math.sin(t * .8) * .01;                     /* hydraulic pump: the seat rises as you scroll */
+      s.arriba.position.y = .89 + bomba; s.col.scale.y = .7 + bomba; s.col.position.y = .19 + s.col.scale.y / 2;
+      cam.position.set(mx * .9, 2.3 + sp * 1.6 + my * .3, 7.6 - sp * .8); cam.lookAt(0, 1.05 + bomba * .5, 0);
+      foco.intensity = 1.6 + Math.sin(t * 9) * .03;
+      pelos.forEach(function(p){ var d = p.userData; d.y -= d.v; if (d.y < 0) { d.y = 4; d.x = rnd(-1.2, 1.2); d.z = rnd(-.8, 1.4); }
+        p.position.set(d.x + Math.sin(t + d.f) * .1, d.y, d.z); p.rotation.set(t * 1.3 + d.f, t + d.f, t * .7); });
+      r.render(esc, cam);
+    });
+  }
+
+  /* one animation loop, paused off-screen, dropped if the phone can't keep up */
+  function bucle(zona, dibujar){
+    var visible = true, t0 = performance.now(), ultimo = t0, lentos = 0, vivo = true;
+    if ('IntersectionObserver' in window) new IntersectionObserver(function(es){ visible = es[0].isIntersecting; if (visible && vivo) requestAnimationFrame(cuadro); }, {rootMargin: '120px'}).observe(zona);
+    document.addEventListener('visibilitychange', function(){ if (!document.hidden && visible && vivo) requestAnimationFrame(cuadro); });
+    function cuadro(ahora){
+      if (!visible || document.hidden || !vivo) return;
+      var t = (ahora - t0) / 1000, dt = ahora - ultimo; ultimo = ahora;
+      if (t > 2) { lentos = dt > 55 ? lentos + 1 : Math.max(0, lentos - 1); if (lentos > 45) { vivo = false; zona.classList.remove('vivo'); return; } }
+      dibujar(t);
+      requestAnimationFrame(cuadro);
+    }
+    requestAnimationFrame(function(a){ ultimo = a; cuadro(a); zona.classList.add('vivo'); });
+  }
+})();
+</script>
+</body>
+</html>
